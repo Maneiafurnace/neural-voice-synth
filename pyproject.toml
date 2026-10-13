@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neural-voice-synth"
+version = "0.6.3"
+description = "Offline pipeline-style AI voice / speech generator (TTS) for Windows"
+readme = "CONTRIBUTING.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "neural-voice-synth contributors" }]
+keywords = ["tts", "speech-synthesis", "voice-cloning", "vocoder", "windows", "onnx"]
+
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "soundfile>=0.12",
+    "onnxruntime>=1.17",
+    "phonemizer-fork>=3.2",
+    "tomli>=2.0; python_version < '3.11'",
+    "rich>=13.7",
+    "numba>=0.59",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "mypy>=1.9",
+    "pyloudnorm>=0.1",
+]
+gpu = ["onnxruntime-gpu>=1.17"]
+wasapi = ["pywin32>=306"]
+
+[project.scripts]
+nvs = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "voices*", "models*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --cov=src --cov-report=term-missing"
