@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Model weights & caches (large, fetched at runtime)
+models/checkpoints/*.pt
+models/checkpoints/*.onnx
+models/checkpoints/*.bin
+voices/reference/*.wav
+!voices/reference/.gitkeep
+*.npy
+*.npz
+
+# Runtime artifacts
+out/
+!out/.gitkeep
+logs/
+*.log
+.cache/
+vocoder_cache/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Local config overrides
+config/local.*.toml
+.env
