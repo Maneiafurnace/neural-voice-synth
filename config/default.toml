@@ -1,0 +1,32 @@
+# neural-voice-synth default runtime config.
+# Override per-machine with config/local.toml (gitignored).
+
+[engine]
+sample_rate = 24000
+bit_depth = 16
+channels = 1
+device = "cpu"          # "cpu" | "cuda" | "dml"
+num_workers = 3
+queue_depth = 64
+
+[model]
+acoustic = "models/checkpoints/tater_acoustic_v3.onnx"
+vocoder  = "models/checkpoints/tater_hifigan_v2.onnx"
+phonemizer = "espeak-ng"
+max_text_chars = 4000
+
+[vocoder]
+upsample = [8, 8, 2, 2]
+mel_bins = 80
+mel_fmin = 40
+mel_fmax = 7600
+
+[output]
+driver = "file"          # "file" | "wasapi" | "asio" | "virtual_mic"
+out_dir = "out"
+loudness_target_lufs = -16.0
+normalize_peak = 0.97
+
+[logging]
+level = "INFO"
+json = false
